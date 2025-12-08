@@ -5,17 +5,23 @@ import { Home, User, Code, Layers, Mail, Download } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 const navItems = [
-  { name: "Home", icon: Home, href: "#hero" },
-  { name: "About", icon: User, href: "#about" },
-  { name: "Work", icon: Layers, href: "#work" },
-  { name: "Stack", icon: Code, href: "#stack" },
-  { name: "Contact", icon: Mail, href: "#contact" },
+  { name: "Home", icon: Home, href: "/#hero" },
+  { name: "About", icon: User, href: "/#about" },
+  { name: "Work", icon: Layers, href: "/#work" },
+  { name: "Stack", icon: Code, href: "/#stack" },
+  { name: "Contact", icon: Mail, href: "/#contact" },
 ];
 
 export default function Dock() {
   const mouseX = useMotionValue(Infinity);
+  const pathname = usePathname();
+
+  if (pathname && pathname.startsWith("/work/")) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-8 inset-x-0 mx-auto w-fit z-999 px-4 max-w-full">
@@ -43,9 +49,9 @@ export default function Dock() {
           <DockIcon
             mouseX={mouseX}
             item={{
-              name: "Resume",
+              name: "RESUME",
               icon: Download,
-              href: "/Samiul_Alam_Shanto_MERN_Stack_Developer_Resume.pdf",
+              href: "/samiul-alam-shanto-resume.pdf",
               isDownload: true,
             }}
           />
@@ -56,6 +62,7 @@ export default function Dock() {
 }
 
 function DockIcon({ mouseX, item }) {
+  // ... keep existing code ...
   const ref = useRef(null);
   const [hovered, setHovered] = useState(false);
 
@@ -75,10 +82,11 @@ function DockIcon({ mouseX, item }) {
   const iconScale = useTransform(widthTransform, [40, 80], [1, 1.5]);
 
   const handleClick = (e) => {
-    if (item.href.startsWith("#")) {
-      e.preventDefault();
-      const element = document.querySelector(item.href);
+    if (item.href.includes("#")) {
+      const id = item.href.split("#")[1];
+      const element = document.getElementById(id);
       if (element) {
+        e.preventDefault();
         element.scrollIntoView({ behavior: "smooth" });
       }
     }
@@ -107,12 +115,25 @@ function DockIcon({ mouseX, item }) {
 
       {hovered && (
         <motion.div
-          initial={{ opacity: 0, y: 10, x: "-50%" }}
+          initial={{ opacity: 0, y: 0, x: "-50%" }}
           animate={{ opacity: 1, y: -15, x: "-50%" }}
-          exit={{ opacity: 0, y: 2, x: "-50%" }}
-          className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-neutral-900 border border-white/20 text-white text-[10px] font-bold uppercase tracking-wider rounded shadow-xl whitespace-nowrap z-50 pointer-events-none"
+          exit={{ opacity: 0, y: 0, x: "-50%" }}
+          className={cn(
+            "absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-lg shadow-xl whitespace-nowrap z-1000 pointer-events-none text-[10px] font-bold uppercase tracking-widest",
+            item.isDownload
+              ? "bg-white text-black border border-neutral-200"
+              : "bg-neutral-900 text-white border border-white/20"
+          )}
         >
           {item.name}
+          <div
+            className={cn(
+              "absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 rotate-45",
+              item.isDownload
+                ? "bg-white"
+                : "bg-neutral-900 border-r border-b border-white/20"
+            )}
+          />
         </motion.div>
       )}
     </motion.div>
@@ -122,7 +143,7 @@ function DockIcon({ mouseX, item }) {
     return (
       <a
         href={item.href}
-        download="Samiul_Alam_Shanto_MERN_Stack_Developer_Resume.pdf"
+        download="samiul-alam-shanto-resume.pdf"
         className="shrink-0 flex items-center justify-center"
       >
         {Content}

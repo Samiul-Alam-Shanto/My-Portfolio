@@ -95,7 +95,7 @@ export default function ProjectCard({
         {/* Right Image  */}
         <Link
           href={`/work/${project.id}`}
-          className="relative w-full md:w-1/2 h-[300px] md:h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black group cursor-pointer"
+          className="relative hidden sm:block w-full md:w-1/2 h-[300px] md:h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black group cursor-pointer"
         >
           <div className="absolute inset-0 z-10 bg-linear-to-t from-neutral-900/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
           <Image

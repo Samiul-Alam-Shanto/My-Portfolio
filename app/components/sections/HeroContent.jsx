@@ -56,7 +56,7 @@ export default function HeroContent() {
         {/* Main Heading */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white font-sans"
+          className="text-4xl  md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight text-white font-sans"
         >
           Building digital <br />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-neutral-100 to-neutral-500">
