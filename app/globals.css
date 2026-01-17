@@ -39,7 +39,7 @@
 
 /* Global Reset & Base Styles */
 body {
-  background-color: transparent;
+  background-color: transparent !important;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;

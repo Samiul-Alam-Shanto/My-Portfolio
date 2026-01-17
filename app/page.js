@@ -9,7 +9,7 @@ import Footer from "./components/layout/Footer";
 
 export default function Home() {
   return (
-    <main className=" min-h-screen w-full relative selection:bg-blue-500/30 selection:text-blue-200">
+    <main className=" min-h-screen bg-transparent w-full relative selection:bg-blue-500/30 selection:text-blue-200">
       {/* Hero */}
       <section
         id="hero"

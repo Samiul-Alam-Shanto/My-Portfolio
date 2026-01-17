@@ -99,7 +99,8 @@ export default function ProjectCard({
         >
           <div className="absolute inset-0 z-10 bg-linear-to-t from-neutral-900/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
           <Image
-            fill
+            width={700}
+            height={400}
             src={project.image}
             alt={project.title}
             className="object-cover  transition-transform duration-700 group-hover:scale-105 opacity-90"

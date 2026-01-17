@@ -28,9 +28,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${outfit.variable} ${spaceGrotesk.variable} antialiased bg-transparent text-white`}
       >
-        <Preloader />
         {/* --- GLOBAL VIDEO BACKGROUND --- */}
-        <div className="fixed inset-0 z-[-1] w-full h-full overflow-hidden bg-[#030303]">
+        <div className="fixed inset-0 z-[-1] w-full h-full overflow-hidden bg-transparent">
           <video
             autoPlay
             loop
@@ -38,10 +37,11 @@ export default function RootLayout({ children }) {
             playsInline
             className="w-full h-full object-cover opacity-100"
           >
-            <source src="/space.mp4" type="video/mp4" />
+            <source src="/galaxy.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]" />
         </div>
+        <Preloader />
 
         <Cursor />
         <Dock />
